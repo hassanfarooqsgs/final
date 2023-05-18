@@ -1,0 +1,25 @@
+
+
+
+<h1>Edit User</h1>
+<%= form_with(model: @user, url: user_path(@user), method: :patch) do |form| %>
+  <%= form.label :Firstname %>
+  <%= form.text_field :first_name %>
+  
+  <%= form.label :Middlename %>
+  <%= form.text_field :Middle_name %>
+
+  <%= form.label :firstname %>
+  <%= form.text_field :Last_name %>
+
+  <%= form.label :Email %>
+  <%= form.email_field :email %>
+
+  <%= form.label :Phone %>
+  <%= form.text_field :phone_number %>
+
+  <%= form.label :Country %>
+  <%= form.text_field :country %>
+
+  <%= form.submit 'Update' %>
+<% end %>
