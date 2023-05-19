@@ -39,18 +39,17 @@ class UsersController < ApplicationController
       respond_to do |format|
         format.csv { send_data @users.to_csv, filename: 'users.csv' }
       end
+    end
+    
+    def destroy
+      @user = User.find(params[:id])
+      @user.destroy
+      redirect_to users_path, notice: "User successfully deleted."
+    end
+    
+    private
+    
+    def user_params
+    params.require(:user).permit(:email, :country, :first_name, :last_name, :middle_name, :phone_number)
+    end
   end
-  private
-
-  def user_params
-  params.require(:user).permit(:email, :country, :first_name, :last_name, :middle_name, :phone_number)
-  end
-
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-    redirect_to users_path, notice: "User successfully deleted."
-  end
-
-
-end

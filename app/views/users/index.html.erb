@@ -52,4 +52,3 @@
 <% if @user.present? %>
   <%= paginate @user %>
 <% end %>
-<%= link_to 'Export to CSV', export_csv_users_path(format: :csv) %>
