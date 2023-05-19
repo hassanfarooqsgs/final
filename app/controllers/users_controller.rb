@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
     def index
-       @users = if params[:search]
+ 
+      @users = if params[:search]
       User.where("first_name LIKE :search OR last_name LIKE :search OR email LIKE :search OR id = :id",
                  search: "%#{params[:search]}%", id: params[:search].to_i)
     else
-      User.all
+      @pagy = User.page(params[:page]).per(3)
     end
 
     end
