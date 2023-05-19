@@ -27,9 +27,7 @@ end
 
   private
 
-  def user_params
-  params.require(:user).permit(:email, :country, :first_name, :last_name, :middle_name, :phone_number)
-  end
+
 
   def destroy
     @user = User.find(params[:id])
@@ -37,3 +35,8 @@ end
     redirect_to users_path, notice: "User successfully deleted."
   end
 end
+
+
+  def user_params
+  params.require(:user).permit(:email, :country, :first_name, :middle_name, :last_name, :phone_number)
+  end
