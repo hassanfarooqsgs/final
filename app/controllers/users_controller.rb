@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
     def index
-      @users = User.all
+       @users = if params[:search]
+      User.where("first_name LIKE :search OR last_name LIKE :search OR email LIKE :search OR id = :id",
+                 search: "%#{params[:search]}%", id: params[:search].to_i)
+    else
+      User.all
+    end
+
     end
   
   
