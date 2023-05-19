@@ -20,6 +20,9 @@
 
   <%= form.label :Country %>
   <%= form.text_field :country %>
+ 
+ <%= form.label :Image %>
+  <%= form.file_field :image, accept: 'image/png, image/gif, image/jpeg'  %>
 
   <%= form.submit 'Update' %>
 <% end %>

@@ -1,5 +1,8 @@
 class User < ApplicationRecord
  
+    has_one_attached :image
+
+  
   def self.to_csv
     CSV.generate(headers: true) do |csv|
       csv << ['FirstName','MiddleName','LastName','Email', 'Country']  # Add column headers
