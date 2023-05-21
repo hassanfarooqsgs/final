@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       get 'export_csv'
     end
   end 
-  
+
+
 root "users#index"
 end
