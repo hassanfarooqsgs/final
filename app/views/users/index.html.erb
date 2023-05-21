@@ -1,4 +1,18 @@
+<% if user_signed_in? %> 
+ <div> <b>Current User: </b> <%= current_user.email %> </div> 
+<% end %>
+
+
+
 <h1>List of Users</h1>
+
+
+<%= form_tag(users_path, method: :get) do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search by name, email, or ID" %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+
 <table class="table table-dark">
   <thead>
     <tr>
@@ -33,4 +47,8 @@
     <% end %>
   </tbody>
 </table>
-  <%= button_to "Sign out", destroy_user_session_path, method: :delete%> 
+  <%= button_to "Sign out", destroy_user_session_path, method: :delete , data: { confirm: "Are you sure you want to sign out?" }%> 
+
+<% if @user.present? %>
+  <%= paginate @user %>
+<% end %>

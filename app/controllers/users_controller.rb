@@ -1,7 +1,14 @@
 class UsersController < ApplicationController
     def index
-      @users = User.all
-    end
+      
+      @users = if params[:search]
+      User.where("first_name LIKE :search OR last_name LIKE :search OR email LIKE :search OR id = :id",
+                 search: "%#{params[:search]}%", id: params[:search].to_i)
+     else
+      @user = User.page(params[:page]).per(3)
+
+     end
+     end
   
   
   def show
@@ -14,6 +21,7 @@ class UsersController < ApplicationController
     # Handle the case when the user record is not found
     redirect_to root_path, alert: 'User not found.'
   end
+  
 end
 
   def update
@@ -25,10 +33,15 @@ end
     end
   end
 
-  private
 
-
-
+  def export_csv
+    @users = User.all
+      require 'csv'
+      respond_to do |format|
+        format.csv { send_data @users.to_csv, filename: 'users.csv' }
+      end
+    end
+    
   def destroy
     @user = User.find(params[:id])
     @user.destroy
@@ -37,6 +50,10 @@ end
 end
 
 
+  private
+
+
   def user_params
-  params.require(:user).permit(:email, :country, :first_name, :middle_name, :last_name, :phone_number)
+      params.require(:user).permit(:email, :country, :first_name, :last_name, :middle_name, :phone_number, :image)
+
   end
