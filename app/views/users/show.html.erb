@@ -8,4 +8,7 @@
 <p>Country: <%= @user.country %></p>
 <%= link_to 'Delete', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' } %><br/>
 <%= link_to 'Edit', edit_user_path(@user) %><br/>
-<%= link_to 'Export to CSV', export_csv_users_path(format: :csv) %>
+<%= link_to 'Export to CSV', export_csv_users_path(format: :csv) %><br/>
+<% if @user.image.attached? %>
+  <%= image_tag url_for(@user.image) %>
+  <%end%>
