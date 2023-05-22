@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-     
+       validates :first_name, :middle_name, :last_name, :country, :phone_number, presence: true
+       
     has_one_attached :image
 
   
@@ -17,3 +18,4 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 end
+

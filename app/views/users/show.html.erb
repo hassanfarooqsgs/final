@@ -1,3 +1,13 @@
+
+<div class="image-container" style="position: relative;">
+  <% if @user.image.attached? %>
+  <%= image_tag url_for(@user.image), class: 'rounded-circle', style: 'height: 350px; width: 350px; position: absolute; top: 10px; left: 70%; transform: translateX(-50%);' %>
+  <% else %>
+  <%= image_tag '/home/avatr1.jpeg', class: 'rounded-circle', alt: 'Default Avatar', style: 'height: 100px; width: 100px; position: absolute; top: 10; left: 50%; transform: translate(-50%, 0%);' %>
+
+</div>
+
+  <%end%>
 <b><h1>User Details</h1></b>
 <p>User ID: <%= @user.id %></p>
 <p>FirstName: <%= @user.first_name %></p>
@@ -8,6 +18,3 @@
 <p>Country: <%= @user.country %></p>
 <%= link_to 'Delete', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' } %><br/>
 <%= link_to 'Edit', edit_user_path(@user) %><br/>
-<% if @user.image.attached? %>
-  <%= image_tag url_for(@user.image) %>
-  <%end%>

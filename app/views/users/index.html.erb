@@ -2,20 +2,16 @@
  <div> <b>Current User: </b> <%= current_user.email %> </div> 
 <% end %>
 
-
-
 <h1>List of Users</h1>
 <%= form_tag(users_path, method: :get) do %>
   <%= text_field_tag :search, params[:search], placeholder: "Search by name, email, or ID" %>
   <%= submit_tag "Search" %>
 <% end %>
 
-
 <table class="table table-dark">
   <thead>
     <tr>
-      
-  <th><%= sortable "id" %></th>
+      <th><%= sortable "id" %></th>
       <th>FirstName</th><br/>
       <th>MiddleName</th>
       <th>LastName</th>
