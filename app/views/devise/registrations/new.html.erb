@@ -31,7 +31,7 @@
     <%= f.text_field :last_name %>
   </div>
 
-    <div class="field">
+  <div class="field">
     <%= f.label :middle_name %><br />
     <%= f.text_field :middle_name %>
   </div>
@@ -46,16 +46,14 @@
     <%= f.text_field :phone_number %>
   </div>
   
-
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>
 
- <div class="field">
+  <div class="field">
     <%= f.label :Agreement, target: '_blank' %>
     <%=  f.check_box :tos_agreement %>    
-
+  </div>
 <% end %>
-
 
 <%= render "devise/shared/links" %>

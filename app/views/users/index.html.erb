@@ -2,21 +2,16 @@
  <div> <b>Current User: </b> <%= current_user.email %> </div> 
 <% end %>
 
-
-
 <h1>List of Users</h1>
-
-
 <%= form_tag(users_path, method: :get) do %>
   <%= text_field_tag :search, params[:search], placeholder: "Search by name, email, or ID" %>
   <%= submit_tag "Search" %>
 <% end %>
 
-
 <table class="table table-dark">
   <thead>
     <tr>
-      <th>User ID</th> <br/>
+      <th><%= sortable "id" %></th>
       <th>FirstName</th><br/>
       <th>MiddleName</th>
       <th>LastName</th>
@@ -40,16 +35,16 @@
           <%= link_to 'Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
           <%= link_to 'Edit', edit_user_path(user) %>
         </td>       
-
-
-
       </tr>
+
     <% end %>
-  </tbody>
+    
+    </tbody>
+    
 </table>
   <%= button_to "Sign out", destroy_user_session_path, method: :delete , data: { confirm: "Are you sure you want to sign out?" }%> 
-<%= link_to 'Export to CSV', export_csv_users_path(format: :csv) %><br/>
+  <%= link_to 'Export to CSV', export_csv_users_path(format: :csv) %><br/>
 
-<% if @user.present? %>
-  <%= paginate @user %>
-<% end %>
+  <% if @users.present? %>
+    <%= paginate @users %>
+  <% end %>
