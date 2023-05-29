@@ -1,0 +1,6 @@
+  <h1>Select Camp</h1>
+  <% @active_camps.each do |camp| %>
+  <p>Title: <%= camp.title %></p>
+  <p>Status: <%= camp.status %></p>
+  <% end %>
+  <%= link_to 'Back', camps_path, class: 'btn btn-secondary' %>

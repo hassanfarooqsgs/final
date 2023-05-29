@@ -1,6 +1,12 @@
-<h2>Sign up</h2>
+  <div class="col-md-4 offset-md-4">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <h2 class="text-center mb-4" >Sign Up</h2>
+ 
+  <div class="container">
+ 
+  <div class="row justify-content-center">
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
@@ -38,7 +44,8 @@
   
     <div class="field">
     <%= f.label :country %><br />
-    <%= f.text_field :country %>
+    <%= f.select :country, User::Country_options %>
+
   </div>
   
     <div class="field">
@@ -54,6 +61,9 @@
     <%= f.label :Agreement, target: '_blank' %>
     <%=  f.check_box :tos_agreement %>    
   </div>
-<% end %>
 
+  </div>
+ </div>
+</div>
+<% end %>
 <%= render "devise/shared/links" %>

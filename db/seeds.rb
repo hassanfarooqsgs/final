@@ -5,10 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create(email:'admin@projectname.com',password:'Password123!@#')
-puts "Seeding done."
-User.create(email:'adminhassan@example.com',password:'12345678')
-puts "Seeding done."
-User.create(email:'admin@campencounter',password:'Password123!@#')
-puts "Seeding done."
-
+  User.create(email:'adminnew@campencounter.com',password:'Password123!@#', admin: true)
+  puts "Seeding done."
+  User.create(email:'adminhassan@example.com',password:'12345678')
+  puts "Seeding done."
+  User.create(email:'admin@campencounter',password:'Password123!@#')
+  puts "Seeding done."
