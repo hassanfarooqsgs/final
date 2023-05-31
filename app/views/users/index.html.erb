@@ -1,27 +1,28 @@
-<% if user_signed_in? %> 
+  <% if user_signed_in? %> 
  <div> <b>Current User: </b> <%= current_user.email %> </div> 
-<% end %>
+  <% end %>
 
-<h1>List of Users</h1>
-<%= form_tag(users_path, method: :get) do %>
-  <%= text_field_tag :search, params[:search], placeholder: "Search by name, email, or ID" %>
+  <h1>List of Users</h1>
+  <%= form_tag(users_path, method: :get) do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search by FirstName, or ID" %>
   <%= submit_tag "Search" %>
-<% end %>
+  <% end %>
 
 <table class="table table-dark">
   <thead>
     <tr>
-      <th><%= sortable "id" %></th>
-      <th>FirstName</th><br/>
-      <th>MiddleName</th>
-      <th>LastName</th>
-      <th>Email</th>
-      <th>Contact</th>
-      <th>Country</th>
+  <th><%= link_to 'User ID', sort_users_users_path(column: :id, direction: toggle_direction(:id)) %></th>
+  <th><%= link_to 'First Name', sort_users_users_path(column: :first_name, direction: toggle_direction(:first_name)) %></th>
+  <th><%= link_to 'Last Name', sort_users_users_path(column: :last_name, direction: toggle_direction(:last_name)) %></th>
+  <th><%= link_to 'Email',     sort_users_users_path(column: :email, direction: toggle_direction(:email)) %></th> 
+  <th>Email</th>
+  <th>Contact</th>
+  <th>Country</th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
+       
       <tr>
         <td><%= user.id %></td>
         <td><%= user.first_name %></td>
@@ -30,21 +31,22 @@
         <td><%= user.email %></td>
         <td><%= user.phone_number %></td>
         <td><%= user.country %></td>
+        
          <td>
-          <%= link_to 'View', user_path(user) %>
-          <%= link_to 'Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' } %>
-          <%= link_to 'Edit', edit_user_path(user) %>
+          <%= link_to 'View', user_path(user), class: 'btn btn-primary' %>
+          <%= link_to 'Delete', user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          <%= link_to 'Edit', edit_user_path(user), class: 'btn btn-primary' %>
         </td>       
       </tr>
 
     <% end %>
     
-    </tbody>
+  </tbody>
     
 </table>
   <%= button_to "Sign out", destroy_user_session_path, method: :delete , data: { confirm: "Are you sure you want to sign out?" }%> 
-  <%= link_to 'Export to CSV', export_csv_users_path(format: :csv) %><br/>
-
+  <%= link_to 'Export to CSV', export_csv_users_url(format: :csv) %><br/>
   <% if @users.present? %>
     <%= paginate @users %>
   <% end %>
+  

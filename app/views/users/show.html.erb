@@ -6,15 +6,29 @@
   <%= image_tag '/home/avatr1.jpeg', class: 'rounded-circle', alt: 'Default Avatar', style: 'height: 100px; width: 100px; position: absolute; top: 10; left: 50%; transform: translate(-50%, 0%);' %>
 
 </div>
-
-  <%end%>
-<b><h1>User Details</h1></b>
-<p>User ID: <%= @user.id %></p>
-<p>FirstName: <%= @user.first_name %></p>
-<p>MiddelName: <%= @user.middle_name %></p>
-<p>LastName: <%= @user.last_name %></p>
-<p>Email: <%= @user.email %></p>
-<p>PhoneNumber: <%= @user.phone_number %></p>
-<p>Country: <%= @user.country %></p>
-<%= link_to 'Delete', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' } %><br/>
-<%= link_to 'Edit', edit_user_path(@user) %><br/>
+<%end%>
+ 
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="mb-4">User Details</h1>
+          <p><strong>User ID:</strong> <%= @user.id %></p>
+          <p><strong>First Name:</strong> <%= @user.first_name %></p>
+          <p><strong>Middle Name:</strong> <%= @user.middle_name %></p>
+          <p><strong>Last Name:</strong> <%= @user.last_name %></p>
+          <p><strong>Email:</strong> <%= @user.email %></p>
+          <p><strong>Phone Number:</strong> <%= @user.phone_number %></p>
+          <p><strong>Country:</strong> <%= @user.country %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-4">
+    <%= link_to 'Delete', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+    <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-primary' %>
+  </div>
+    <%= link_to 'Back', users_path, class: 'btn btn-secondary mt-2 ' %>
+</div>
+ 

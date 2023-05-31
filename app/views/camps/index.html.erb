@@ -1,0 +1,43 @@
+  <h1>List of Camps</h1>
+  <%= form_tag(camps_path, method: :get) do %>
+  <%= text_field_tag :search, params[:search], placeholder: "Search by title, or ID" %>
+  <%= submit_tag "Search" %>
+  <% end %>
+
+  <%= link_to 'Add New Camp location', new_camp_path, class: 'btn btn-primary',style: 'height: 55px; width: 150px; position: absolute; top: 25; left: 71%; transform: translate(-50%, 1%);' %>
+
+  <b><h1> List of Camps </h1></b>
+<table class="table table-dark">
+  <thead>
+    <tr>
+  <th><%= link_to 'ID', sort_camps_camps_path(column: :id, direction: toggle_direction(:id)) %></th>
+  <th><%= link_to 'Title', sort_camps_camps_path(column: :title, direction: toggle_direction(:title)) %></th>
+  <th><%= link_to 'Location', sort_camps_camps_path(column: :location, direction: toggle_direction(:location)) %></th>  
+  <th>Status</th>
+  <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @camps.each do |camp| %>
+      <tr>
+        <td><%= camp.id %></td>
+        <td><%= camp.title %></td>
+        <td><%= camp.location %></td>
+        <td><%= camp.status %></td>
+        <td><%= camp.start_date%>
+
+        <td>
+          <%= link_to 'Status', status_camp_path(camp), method: :patch %>
+          <%= link_to 'View', camp_path(camp), class: 'btn btn-primary'  %>
+          <%= link_to 'Edit', edit_camp_path(camp), class: 'btn btn-primary' %>
+          <%= link_to 'Delete', camp_path(camp), method: :delete, data: { confirm: 'Are you sure you want to delete this camp?' }, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  
+  <%= link_to 'Export to CSV', export_csv_camps_url(format: :csv) %><br/>
+  <% if @camps.present? %>
+    <%= paginate @camps %>
+  <% end %>
