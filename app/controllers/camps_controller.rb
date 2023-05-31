@@ -32,8 +32,7 @@ class CampsController < ApplicationController
   
   def export_csv
     @camps = Camp.all
-    require 'csv'
-    
+    require 'csv' 
     respond_to do |format|
       format.csv { send_data @camps.to_csv, filename: 'camp.csv' }
     end
@@ -41,8 +40,8 @@ class CampsController < ApplicationController
   
   def update
     if @camp.update(camp_params)
-    redirect_to camps_path, notice: 'Camp updated successfully.'
-    else
+     redirect_to camps_path, notice: 'Camp updated successfully.'
+      else
       render :edit
     end
   end
@@ -56,9 +55,27 @@ class CampsController < ApplicationController
     @camp.update(status: @camp.inactive? ? 'active' : 'inactive')
     redirect_to camps_path, notice: 'Camp status updated successfully.'
   end
-
+  
   def select
     @active_camps = Camp.where(status: 'active')
+      if params[:camp_id].present?
+      redirect_to camp_intro_path(params[:camp_id])
+      else
+      puts "Id not found"
+      end
+  end
+     
+  def intro
+    @camp = Camp.find(params[:camp_id])
+    if @camp.nil?
+      flash[:error] = 'Please select a valid camp.'
+      redirect_to select_camp_path
+    elsif Date.current > @camp.end_date
+         flash[:notice] = 'Please participate in the next camp.'
+         redirect_to user_select_camp_path
+    else
+    #redirect_to camps_path
+    end         
   end
 
   private

@@ -59,4 +59,3 @@ gem 'kaminari'
 gem 'pundit'
 gem 'countries'
 gem 'iso3166-countries'
-

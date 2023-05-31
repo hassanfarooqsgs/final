@@ -1,6 +1,14 @@
+<div class="container text-center">
   <h1>Select Camp</h1>
-  <% @active_camps.each do |camp| %>
-  <p>Title: <%= camp.title %></p>
-  <p>Status: <%= camp.status %></p>
+
+  <%= form_tag user_camp_intro_path, method: :get, class: 'mt-3' do %>
+    <div class="form-group">
+      <%= label_tag :camp_id, 'Please Select a Camp:' %>
+      <%= select_tag :camp_id, 
+      options_for_select(@active_camps.map { |camp| [camp.title, camp.id] }),
+      prompt: 'Select a Camp', class: 'form-control' %>
+    </div>
+    <%= submit_tag 'Continue', class: 'btn btn-primary' %>
   <% end %>
-  <%= link_to 'Back', camps_path, class: 'btn btn-secondary' %>
+  <%= link_to 'Back', camps_path, class: 'btn btn-secondary mt-3' %>
+</div>

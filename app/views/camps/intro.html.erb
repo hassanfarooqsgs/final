@@ -3,7 +3,7 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-body">
-        <h1 class="mb-4">Camp Details</h1>
+        <h1 class="mb-4">Camp Intro Page</h1>
         <p><strong>Camp ID:</strong> <%= @camp.id %></p>
         <p><strong>Title:</strong> <%= @camp.title %></p>
         <p><strong>Location:</strong> <%= @camp.location %></p>
@@ -13,12 +13,5 @@
       </div>
     </div>
   </div>
-  <div class="mt-4">
-  <div class="actions">
-    <%= link_to 'Edit', edit_camp_path(@camp), class: 'btn btn-primary' %>
-    <%= link_to 'Delete', camp_path(@camp), method: :delete, 
-    data: { confirm: 'Are you sure you want to delete this camp?' },
-    class: 'btn btn-danger' %>
-  </div>
-  <%= link_to 'Back', camps_path, class: 'btn btn-secondary mt-3' %>
-</div>
+<%= link_to 'back', user_select_camp_path, class: 'btn btn-secondary mt-3' %>
+<%= link_to 'index page', camps_path, class: 'btn btn-secondary mt-3' %>
